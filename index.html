@@ -66,27 +66,24 @@
           {
               pictureTarget = target;
 
-              navigator.mediaDevices.getUserMedia({video: true})
-                .then(onCameraSuccess, onCameraError);
+              if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
+              {
+                  navigator.mediaDevices.getUserMedia({video: true})
+                    .then(onCameraSuccess, onCameraError);
+              }
+              else
+              {
+                  navigator.getMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.getUserMedia;
 
-              //if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
-              //{
-              //    navigator.mediaDevices.getUserMedia({video: true})
-              //      .then(onCameraSuccess, onCameraError);
-              //}
-              //else
-              //{
-                  //navigator.getMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.getUserMedia;
-
-                  //if(navigator.getMedia)
-                  //{
-                  //    navigator.getMedia({video: true}, onCameraSuccess, onCameraError);
-                  //}
-                  //else
-                  //{
-                  //    alert("Your browser does not support this feature.");
-                  //}
-              //}
+                  if(navigator.getMedia)
+                  {
+                      navigator.getMedia({video: true}, onCameraSuccess, onCameraError);
+                  }
+                  else
+                  {
+                      alert("Your browser does not support this feature.");
+                  }
+              }
           }
           catch(e)
           {
