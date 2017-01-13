@@ -1,0 +1,97 @@
+<html>
+  
+  <head>
+    <base href="/">
+    <title>Camera Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+ 
+  <body>
+
+    <div class="centered">
+    
+        <div class="row centered">
+            <button type="button" onclick="takePicture(1)">Take Picture</button>
+            <video id="video-player1" width="375" height="150" autoplay></video>
+        </div>
+    
+    </div>
+
+  </body>
+
+  <script>
+
+      var pictureTarget;
+
+      var onCameraSuccess = function(videoStream)
+      {
+          try
+          {
+              // Capture video with camera
+              var video = document.getElementById("video-player" + pictureTarget);
+              video.src = window.URL.createObjectURL(videoStream);
+
+              // Take snapshot of video and obtain its URL data
+              var canvas = document.createElement("canvas");
+              canvas.getContext("2d").drawImage(video, 0, 0);
+              var data = canvas.toDataURL("image/png");
+              
+              // Render image tag
+              var photo = document.createElement("img");
+              photo.src = data;
+          }
+          catch(e)
+          {
+              alert(e)
+          }
+      }
+
+      var onCameraError = function(error)
+      { 
+          switch(error.name)
+          {
+              case "DevicesNotFoundError" :
+              case "NotFoundError" :
+                alert("You don't have a camera :()");
+                break;
+              default :
+                alert("Unable to take  pictures. " + error.name);
+          }
+      }
+
+      function takePicture(target)
+      {
+          try
+          {
+              pictureTarget = target;
+
+              if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
+              {
+                  navigator.mediaDevices.getUserMedia({video: true})
+                    .then(onCameraSuccess, onCameraError);
+              }
+              else
+              {
+                  navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+                  if(navigator.getMedia)
+                  {
+                      navigator.getMedia({video: true}, onCameraSuccess, onCameraError);
+                  }
+                  else
+                  {
+                      alert("Your browser does not support this feature.");
+                  }
+              }
+          }
+          catch(e)
+          {
+              alert(e);
+          }
+      }
+
+
+  </script>
+
+</html>
