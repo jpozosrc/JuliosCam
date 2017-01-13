@@ -73,16 +73,16 @@
               }
               else
               {
-                  navigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+                  //avigator.getMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
-                  if(navigator.getMedia)
-                  {
-                      navigator.getMedia({video: true}, onCameraSuccess, onCameraError);
-                  }
-                  else
-                  {
+                  //if(navigator.getMedia)
+                  //{
+                  //    navigator.getMedia({video: true}, onCameraSuccess, onCameraError);
+                  //}
+                  //else
+                  //{
                       alert("Your browser does not support this feature.");
-                  }
+                  //}
               }
           }
           catch(e)
