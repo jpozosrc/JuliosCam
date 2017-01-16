@@ -34,19 +34,16 @@
               // Capture video with camera
               var video = document.getElementById("myVideo");
               video.src = window.URL.createObjectURL(videoStream);
-              alert("video completed")
 
               // Take snapshot of video and obtain its URL data
               var canvas = document.getElementById("myCanvas");
-              canvas.getContext("2d").drawImage(video, 0, 0);
+              canvas.getContext("2d").drawImage(video, 100, 100);
               var data = canvas.toDataURL("image/png");
-              alert("canvas completed")
 
               // Render image tag
               var photo = document.getElementById("myPhoto");
               photo.src = data;
-              alert("photo completed")
-          }
+         }
           catch(e)
           {
               alert(e)
