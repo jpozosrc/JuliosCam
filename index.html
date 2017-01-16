@@ -37,9 +37,11 @@
                   {        
                         // Take snapshot of video and obtain its URL data
                         var canvas = document.getElementById("myCanvas");
+                        canvas.setAttribute("style", "visibility:visible;")
                         canvas.getContext("2d").drawImage(video, 0, 0, 100, 100);
                         var photo = document.getElementById("myPhoto");
                         photo.src = canvas.toDataURL("image/webp");
+                        canvas.setAttribute("style", "visibility:hidden;")
                   }, 2000
               );
           }
