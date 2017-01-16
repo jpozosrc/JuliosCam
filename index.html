@@ -30,12 +30,18 @@
               // Capture video with camera
               var video = document.getElementById("myVideo");
               video.src = window.URL.createObjectURL(videoStream);
-                      
-              // Take snapshot of video and obtain its URL data
-              var canvas = document.getElementById("myCanvas");
-               canvas.getContext("2d").drawImage(video, 0, 0, 100, 100);
-               var photo = document.getElementById("myPhoto");
-               photo.src = canvas.toDataURL("image/webp");
+
+              setTimeout
+              (
+                  function()
+                  {        
+                        // Take snapshot of video and obtain its URL data
+                        var canvas = document.getElementById("myCanvas");
+                        canvas.getContext("2d").drawImage(video, 0, 0, 100, 100);
+                        var photo = document.getElementById("myPhoto");
+                        photo.src = canvas.toDataURL("image/webp");
+                  }, 2000
+              );
           }
           catch(e)
           {
