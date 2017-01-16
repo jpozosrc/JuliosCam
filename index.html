@@ -13,9 +13,9 @@
     
         <div class="row centered">
             <button type="button" onclick="takePicture()">Take Picture</button>
-            <video id="video-player" autoplay width="300" height="300"></video>
-            <canvas id="canvas" height="300" width="300"></canvas>
-            <img id="photo" height="300" width="300"/>
+            <video id="video-player" autoplay width="100" height="100"></video><br/>
+            <canvas id="canvas" height="100" width="100"></canvas><br/>
+            <img id="photo" height="100" width="100"/>
 
         </div>
     
@@ -35,14 +35,31 @@
               var video = document.getElementById("video-player");
               video.src = window.URL.createObjectURL(videoStream);
 
-              // Take snapshot of video and obtain its URL data
-              var canvas = document.getElementById("canvas");
-              canvas.getContext("2d").drawImage(video, 0, 0);
-              var data = canvas.toDataURL("image/png");
+              settimeout
+              (
+                  function()
+                  {
+                        // Take snapshot of video and obtain its URL data
+                        var canvas = document.getElementById("canvas");
+                        canvas.getContext("2d").drawImage(video, 0, 0);
+                        var data = canvas.toDataURL("image/png");
+                  },
 
-              // Render image tag
-              var photo = document.getElementById("photo");
-              photo.src = data;
+                  3000
+              )
+
+              settimeout
+              (
+                  function()
+                  {
+                        // Render image tag
+                        var photo = document.getElementById("photo");
+                        photo.src = data;
+                  },
+
+                  3000
+              )
+              
           }
           catch(e)
           {
