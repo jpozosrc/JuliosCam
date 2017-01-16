@@ -87,7 +87,7 @@
       {
         // Take snapshot of video and obtain its URL data
         var canvas = document.getElementById("myCanvas");
-        casnvas.getContext("2d").drawImage(video, 100, 100);
+        canvas.getContext("2d").drawImage(video, 100, 100);
         var data = canvas.toDataURL("image/png");
 
         // Render image tag
