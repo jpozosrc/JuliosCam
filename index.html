@@ -13,7 +13,10 @@
     
         <div class="row centered">
             <button type="button" onclick="takePicture(1)">Take Picture</button>
-            <video id="video-player1" width="375" height="150" autoplay></video>
+            <video id="video-player1" width="300" height="300" autoplay></video>
+            <canvas id="canvas" height="300" width="300"></canvas>
+            <img id="photo" height="300" width="300"/>
+
         </div>
     
     </div>
@@ -33,12 +36,12 @@
               video.src = window.URL.createObjectURL(videoStream);
 
               // Take snapshot of video and obtain its URL data
-              var canvas = document.createElement("canvas");
-              canvas.getContext("2d").drawImage(video, 0, 0);
+              var canvas = document.getElementById("canvas");
+              canvas.getContext("2d").drawImage(video, 0, 0, 300, 300);
               var data = canvas.toDataURL("image/png");
               
               // Render image tag
-              var photo = document.createElement("img");
+              var photo = document.getElementById("photo");
               photo.src = data;
           }
           catch(e)
@@ -65,6 +68,10 @@
           try
           {
               pictureTarget = target;
+
+              console.log(navigator.mediaDevices)
+              console.log(navigator.mediaDevices.getUserMedia)
+              console.log(navigator)
 
               if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
               {
