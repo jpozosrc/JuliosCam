@@ -12,8 +12,8 @@
     <div class="centered">
     
         <div class="row centered">
-            <button type="button" onclick="takePicture(1)">Take Picture</button>
-            <video id="video-player1" width="300" height="300" autoplay></video>
+            <button type="button" onclick="takePicture()">Take Picture</button>
+            <video id="video-player" width="300" height="300"></video>
             <canvas id="canvas" height="300" width="300"></canvas>
             <img id="photo" height="300" width="300"/>
 
@@ -27,19 +27,21 @@
 
       var pictureTarget;
 
-      var onCameraSuccess = function(videoStream)
+      var onCameraSuccess = function()
       {
           try
           {
               // Capture video with camera
-              var video = document.getElementById("video-player" + pictureTarget);
+              var video = document.getElementById("video-player");
               video.src = window.URL.createObjectURL(videoStream);
 
               // Take snapshot of video and obtain its URL data
+              video.play();
               var canvas = document.getElementById("canvas");
-              canvas.getContext("2d").drawImage(video, 0, 0, 300, 300);
+              canvas.getContext("2d").drawImage(video, 0, 0);
+              video.stop();
               var data = canvas.toDataURL("image/png");
-              
+
               // Render image tag
               var photo = document.getElementById("photo");
               photo.src = data;
