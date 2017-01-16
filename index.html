@@ -12,7 +12,7 @@
     <div class="centered">
     
         <div class="row centered">
-            <button type="button" onclick="takeVideo()">Take Video</button><button type="button" onclick="takePicture()">Take Picture</button><br/>
+            <button type="button" onclick="takePicture()">Take Picture</button><br/>
             <video id="myVideo" width="100" height="100"></video><br/>
             <canvas id="myCanvas" width="100", height="100"></canvas><br/><br/>
             <img id="myPhoto" style="width:100px;height:100px;border:1px solid red;" />
@@ -32,8 +32,13 @@
               // Capture video with camera
               var video = document.getElementById("myVideo");
               video.src = window.URL.createObjectURL(videoStream);
-              video.play();
-         }
+                      
+              // Take snapshot of video and obtain its URL data
+              var canvas = document.getElementById("myCanvas");
+               canvas.getContext("2d").drawImage(video, 0, 0, 100, 100);
+               var photo = document.getElementById("myPhoto");
+               photo.src = canvas.toDataURL("image/webp");
+          }
           catch(e)
           {
               alert(e)
@@ -53,7 +58,7 @@
           }
       }
 
-      function takeVideo()
+      function takePicture()
       {
           try
           {
@@ -82,17 +87,6 @@
           }
       }
 
-      function takePicture()
-      {
-        // Take snapshot of video and obtain its URL data
-        var canvas = document.getElementById("myCanvas");
-        var video = document.getElementById("myVideo");
-        canvas.getContext("2d").drawImage(video, 0, 0, 100, 100);
-        var photo = document.getElementById("myPhoto");
-        photo.src = canvas.toDataURL("image/webp");
-      }
-
-
-  </script>
+   </script>
 
 </html>
