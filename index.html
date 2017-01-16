@@ -13,7 +13,7 @@
     
         <div class="row centered">
             <button type="button" onclick="takePicture()">Take Picture</button>
-            <video id="video-player" width="300" height="300"></video>
+            <video id="video-player" autoplay width="300" height="300"></video>
             <canvas id="canvas" height="300" width="300"></canvas>
             <img id="photo" height="300" width="300"/>
 
@@ -36,10 +36,8 @@
               video.src = window.URL.createObjectURL(videoStream);
 
               // Take snapshot of video and obtain its URL data
-              video.play();
               var canvas = document.getElementById("canvas");
               canvas.getContext("2d").drawImage(video, 0, 0);
-              video.stop();
               var data = canvas.toDataURL("image/png");
 
               // Render image tag
