@@ -13,8 +13,6 @@
     
         <div class="row centered">
             <button type="button" onclick="takePicture()">Take Picture</button><br/><br/>
-            <video id="myVideo" autoplay></video><img id="myPhoto" style="margin-left:10px;width:75px;height:100px;" /><br/>
-            <canvas id="myCanvas"></canvas><br/><br/>
             <video id="myVideo" autoplay></video><img id="myPhoto" style="margin-left:10px;" /><br/>
             <canvas id="myCanvas"></canvas><br/><br/>
         </div>
@@ -37,16 +35,13 @@
               (
                   function()
                   {        
-                        // Take snapshot of video and obtain its URL data
                         var canvas = document.getElementById("myCanvas");
-                        canvas.setAttribute("style", "visibility:visible;width:100px;height:75px;")
-                        canvas.getContext("2d").drawImage(video, 0, 0, 75,100,75,100);
-                        
-                        canvas.getContext("2d").drawImage(video, 0, 0, 75, 100);
+                        canvas.setAttribute("style", "visibility:visible;")
+                        canvas.getContext("2d").drawImage(video, 0, 0);
                         var photo = document.getElementById("myPhoto");
                         photo.src = canvas.toDataURL("image/webp");
                         canvas.setAttribute("style", "visibility:hidden;")
-                  }, 2000
+                  }, 1000
               );
           }
           catch(e)
