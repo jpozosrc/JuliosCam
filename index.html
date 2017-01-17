@@ -15,6 +15,8 @@
             <button type="button" onclick="takePicture()">Take Picture</button><br/><br/>
             <video id="myVideo" autoplay></video><img id="myPhoto" style="margin-left:10px;width:75px;height:100px;" /><br/>
             <canvas id="myCanvas"></canvas><br/><br/>
+            <video id="myVideo" autoplay></video><img id="myPhoto" style="margin-left:10px;" /><br/>
+            <canvas id="myCanvas"></canvas><br/><br/>
         </div>
     
     </div>
@@ -40,6 +42,7 @@
                         canvas.setAttribute("style", "visibility:visible;")
                         canvas.getContext("2d").drawImage(video, 0, 0, 75,100,75,100);
                         
+                        canvas.getContext("2d").drawImage(video, 0, 0, 75, 100);
                         var photo = document.getElementById("myPhoto");
                         photo.src = canvas.toDataURL("image/webp");
                         canvas.setAttribute("style", "visibility:hidden;")
