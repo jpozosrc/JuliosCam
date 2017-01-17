@@ -37,7 +37,7 @@
                   {        
                         var canvas = document.getElementById("myCanvas");
                         canvas.setAttribute("style", "visibility:visible;")
-                        canvas.getContext("2d").drawImage(video, 0, 0);
+                        canvas.getContext("2d").drawImage(video, 0, 0, 200, 150);
                         var photo = document.getElementById("myPhoto");
                         photo.src = canvas.toDataURL("image/webp");
                         canvas.setAttribute("style", "visibility:hidden;")
