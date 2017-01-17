@@ -12,8 +12,8 @@
     <div class="centered">
     
         <div class="row centered">
-            <button type="button" onclick="takePicture()">Take Picture</button><br/><br/>
-            <video id="myVideo" autoplay width="200" height="150"></video><img id="myPhoto" style="margin-left:10px;width:200px;height:150px;" /><br/>
+            <button type="button" onclick="startCamera()">Start Camera</button><br/><br/>
+            <video id="myVideo" autoplay width="200" height="150"></video><button type="button" onclick="startCamera()">Start Camera</button><img id="myPhoto" style="margin-left:10px;width:200px;height:150px;" /><br/>
             <canvas id="myCanvas" width="200" height="150"></canvas><br/><br/>
         </div>
     
@@ -30,19 +30,6 @@
               // Capture video with camera
               var video = document.getElementById("myVideo");
               video.src = window.URL.createObjectURL(videoStream);
-
-              setTimeout
-              (
-                  function()
-                  {        
-                        var canvas = document.getElementById("myCanvas");
-                        canvas.setAttribute("style", "visibility:visible;")
-                        canvas.getContext("2d").drawImage(video, 0, 0, 200, 150);
-                        var photo = document.getElementById("myPhoto");
-                        photo.src = canvas.toDataURL("image/webp");
-                        canvas.setAttribute("style", "visibility:hidden;")
-                  }, 1000
-              );
           }
           catch(e)
           {
@@ -63,7 +50,7 @@
           }
       }
 
-      function takePicture()
+      function startCamera()
       {
           try
           {
@@ -90,6 +77,16 @@
           {
               alert(e);
           }
+      }
+
+      function takePicture()
+      {
+            var canvas = document.getElementById("myCanvas");
+            canvas.setAttribute("style", "visibility:visible;")
+            canvas.getContext("2d").drawImage(video, 0, 0, 200, 150);
+            var photo = document.getElementById("myPhoto");
+            photo.src = canvas.toDataURL("image/webp");
+            canvas.setAttribute("style", "visibility:hidden;");
       }
 
    </script>
